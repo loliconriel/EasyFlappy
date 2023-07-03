@@ -31,7 +31,11 @@ public class Player : MonoBehaviour
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
         PlayerTransform.Translate(new Vector3(Horizontal,Vertical,0)*Speed*Time.deltaTime);
-        PlayerRenderer.flipX = Horizontal<0?true:false;
+        if (Horizontal != 0)
+        {
+            PlayerRenderer.flipX = Horizontal < 0 ? true : false;
+        }
+        
         
     }
 }
