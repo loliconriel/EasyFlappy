@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private Transform PlayerTransform;
     private SpriteRenderer PlayerRenderer;
     private Animator Animator;
+    private Rigidbody2D Rigidbody;
     private Vector2 direction;
     private Input_Controller input_Controller;
 
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
         Animator = GetComponent<Animator>();
         PlayerTransform = GetComponent<Transform>();
         PlayerRenderer = GetComponent<SpriteRenderer>();
+        Rigidbody = GetComponent<Rigidbody2D>();
 
         //方法三
         input_Controller = GetComponent<Input_Controller>();
@@ -97,7 +100,8 @@ public class Player : MonoBehaviour
     //方法三
     private void Jump(object sender, EventArgs e)
     {
-
+        Rigidbody.velocity = Vector2.zero;
+        Rigidbody.AddForce(new Vector2(0,300f));
     }
     private void Reload(object sender, EventArgs e)
     {
@@ -106,5 +110,19 @@ public class Player : MonoBehaviour
     private void Flip(object sender, EventArgs e)
     {
         Animator.SetBool("Dead", !Animator.GetBool("Dead"));
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Point")
+        {
+            Debug.Log("+1");
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("Dead");
+        }
     }
 }

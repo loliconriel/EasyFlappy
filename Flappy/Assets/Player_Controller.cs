@@ -173,7 +173,7 @@ public partial class @Player_Controller : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""560e8c04-10d4-455b-b304-bf112194721e"",
-                    ""path"": ""<Touchscreen>/Press"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
