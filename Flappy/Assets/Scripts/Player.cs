@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System;
-using Unity.VisualScripting;
+using Unity.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
+    public GameObject Lose_Panel;
+    public GameObject Point_Text;
 
     private Transform PlayerTransform;
     private SpriteRenderer PlayerRenderer;
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
 
     //Player_Controller Player_;
 
+    public int point = 0;
     private float Horizontal = 0f,Vertical = 0f,Speed = 5f;
 
     // Start is called before the first frame update
@@ -27,7 +31,7 @@ public class Player : MonoBehaviour
         PlayerTransform = GetComponent<Transform>();
         PlayerRenderer = GetComponent<SpriteRenderer>();
         Rigidbody = GetComponent<Rigidbody2D>();
-
+        point = 0;
         //¤èªk¤T
         input_Controller = GetComponent<Input_Controller>();
 
@@ -111,18 +115,24 @@ public class Player : MonoBehaviour
     {
         Animator.SetBool("Dead", !Animator.GetBool("Dead"));
     }
+    private void Lose()
+    {
+        Lose_Panel.SetActive(true);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Point")
         {
-            Debug.Log("+1");
+            point++;
+            Point_Text.GetComponent<TextMeshProUGUI>().text = point.ToString();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Dead");
+            Lose();
         }
     }
+
 }
