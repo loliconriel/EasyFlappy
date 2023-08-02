@@ -6,12 +6,15 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Player : MonoBehaviour
 {
     public GameObject Lose_Panel;
     public GameObject Point_Text;
     public GameObject[] Effect = new GameObject[2];
+    public GameObject GameManage;
+    public GameObject PipeSpawner;
 
     private Transform PlayerTransform;
     private SpriteRenderer PlayerRenderer;
@@ -28,12 +31,15 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManage = GameObject.Find("GameManager");
+
         Time.timeScale = 1f;
         Animator = GetComponent<Animator>();
         PlayerTransform = GetComponent<Transform>();
         PlayerRenderer = GetComponent<SpriteRenderer>();
         Rigidbody = GetComponent<Rigidbody2D>();
         point = 0;
+        Rigidbody.gravityScale = 0;
         //方法三
         input_Controller = GetComponent<Input_Controller>();
 
@@ -106,6 +112,11 @@ public class Player : MonoBehaviour
     //方法三
     private void Jump(object sender, EventArgs e)
     {
+        if (Rigidbody.gravityScale ==0)
+        {
+            Rigidbody.gravityScale = 1;
+            PipeSpawner.SetActive(true);
+        }
         Rigidbody.velocity = Vector2.zero;
         Rigidbody.AddForce(new Vector2(0,300f));
         var effect = Instantiate(Effect[1], transform.position, Quaternion.identity);
@@ -143,6 +154,7 @@ public class Player : MonoBehaviour
             effect.GetComponent<AudioSource>().Play();
             Destroy(effect,5f);
             Lose();
+            GameManage.GetComponent<GameManager>().Lose(point);
         }
     }
 

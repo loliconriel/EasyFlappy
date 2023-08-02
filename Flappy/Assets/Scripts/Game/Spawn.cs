@@ -5,9 +5,8 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject pipe;
-
     float Reapeat_Time = 2f, low = -4f, high = 4f,Destroy_Time=5f;
-    void Start()
+    void OnEnable()
     {
         InvokeRepeating(nameof(Spawn_), 1, Reapeat_Time);
     }
