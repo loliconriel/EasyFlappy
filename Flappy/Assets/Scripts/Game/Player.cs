@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         point = 0;
         Rigidbody.gravityScale = 0;
-        //¤èªk¤T
+        //ï¿½ï¿½kï¿½T
         input_Controller = GetComponent<Input_Controller>();
 
         input_Controller.Jump += Jump;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         input_Controller.Reload += Reload;
         //
 
-        /*¨Ï¥ÎInput map C#ÄÒ¤~·|¥Î¨ì ¤èªk¤G
+        /*ï¿½Ï¥ï¿½Input map C#ï¿½Ò¤~ï¿½|ï¿½Î¨ï¿½ ï¿½ï¿½kï¿½G
         Player_ = new Player_Controller();
         Player_.Keyboard.Enable();
         Player_.Keyboard.Jump.performed += Jump;
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
             Animator.SetBool("Dead", !Animator.GetBool("Dead"));
         }
    
-        //Horizontal¸òVerticalªº½d³ò·|¦b -1~1
+        //Horizontalï¿½ï¿½Verticalï¿½ï¿½ï¿½dï¿½ï¿½|ï¿½b -1~1
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
         direction = new Vector2(Horizontal,Vertical);
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     {
         direction = input_Controller.direction;
     }
-    /*¤èªk¤@
+    /*ï¿½ï¿½kï¿½@
     public void Reload(InputAction.CallbackContext ctx)
     {
         if (ctx.phase == InputActionPhase.Performed)
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     }
     */
 
-    //¤èªk¤T
+    //ï¿½ï¿½kï¿½T
     private void Jump(object sender, EventArgs e)
     {
         if (Rigidbody.gravityScale ==0)
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
             Rigidbody.gravityScale = 1;
             PipeSpawner.SetActive(true);
         }
-        Rigidbody.velocity = Vector2.zero;
+        Rigidbody.linearVelocity = Vector2.zero;
         Rigidbody.AddForce(new Vector2(0,300f));
         var effect = Instantiate(Effect[1], transform.position, Quaternion.identity);
         effect.GetComponent<AudioSource>().time = 0.3f;

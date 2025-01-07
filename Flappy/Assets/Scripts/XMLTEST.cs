@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Schema;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Xml;
 using UnityEngine;
 using System;
-//using System.Security.Cryptography; ¦³³o­Ó¤~¦³ RijndaelManaged
+//using System.Security.Cryptography; ï¿½ï¿½ï¿½oï¿½Ó¤~ï¿½ï¿½ RijndaelManaged
 public class XMLTEST : MonoBehaviour
 {
 
@@ -58,7 +58,7 @@ public class XMLTEST : MonoBehaviour
     private string Decrypt(string toD)
     {
         byte[] KeyArray = UTF8Encoding.UTF8.GetBytes(EncryptKey);
-        //­ì¥»¬O¥ÎRijndaelManaged «á¨Ó§ï¦¨Aes
+        //ï¿½ì¥»ï¿½Oï¿½ï¿½RijndaelManaged ï¿½ï¿½Ó§ï¦¨Aes
         Aes rdEL = Aes.Create();
         rdEL.Key = KeyArray;
         rdEL.Mode = CipherMode.ECB;
@@ -95,7 +95,7 @@ public class XMLTEST : MonoBehaviour
         writer.Write(xxx);
         writer.Close();
 
-        Debug.Log("XML ¦sÀÉ§¹²¦");
+        Debug.Log("XML ï¿½sï¿½É§ï¿½ï¿½ï¿½");
 
     }
     void XML_Load()
@@ -114,7 +114,7 @@ public class XMLTEST : MonoBehaviour
         XmlNodeList XMLScore = XML.GetElementsByTagName("score");
         int Score = int.Parse(XMLScore[0].InnerText);
         Now_Score = Score;
-        Debug.Log("XML ÅªÀÉ§¹²¦");
+        Debug.Log("XML Åªï¿½É§ï¿½ï¿½ï¿½");
         /*
         if (System.IO.File.Exists(Application.persistentDataPath+"/Player_Save"))
         {
@@ -122,7 +122,7 @@ public class XMLTEST : MonoBehaviour
         }
         else
         {
-            Debug.Log("§ä¤£¨ìÀÉ®×");
+            Debug.Log("ï¿½ä¤£ï¿½ï¿½ï¿½É®ï¿½");
         }
         */
 
